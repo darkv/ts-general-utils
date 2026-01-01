@@ -1,0 +1,81 @@
+{
+  "name": "@darkv/ts-general-utils",
+  "version": "0.0.1",
+  "description": "A modern TypeScript utility library",
+  "keywords": [
+    "typescript",
+    "utilities"
+  ],
+  "author": {
+    "name": "Johann Haeger",
+    "email": "johann.haeger@posteo.de"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/darkv/ts-general-utils#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darkv/ts-general-utils.git"
+  },
+  "bugs": {
+    "url": "https://github.com/darkv/ts-general-utils/issues"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    "./random": "./dist/random/index.mjs",
+    "./time": "./dist/time/index.mjs",
+    "./types": "./dist/types/index.mjs",
+    "./values": "./dist/values/index.mjs"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "lint:package": "publint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "pnpm run build && pnpm run typecheck && pnpm run test"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@eslint/markdown": "^7.5.1",
+    "@types/node": "^25.0.3",
+    "@vitest/coverage-v8": "^4.0.16",
+    "bumpp": "^10.3.2",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^16.5.0",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.7.4",
+    "publint": "^0.3.16",
+    "simple-git-hooks": "^2.13.1",
+    "ts-expect": "^1.3.0",
+    "tsdown": "^0.18.4",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.51.0",
+    "vitest": "^4.0.16"
+  },
+  "engines": {
+    "node": ">=24",
+    "pnpm": ">=10.0.0"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm install --frozen-lockfile --ignore-scripts --offline && pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": [
+      "pnpm run lint:fix",
+      "pnpm run format"
+    ]
+  }
+}
