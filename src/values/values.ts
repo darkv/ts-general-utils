@@ -7,9 +7,3 @@
 export function isDefined<T>(value: T | null | undefined): value is T {
   return value !== null && value !== undefined;
 }
-
-/*
-if (!(Number.isInteger(count) && count >= 0)) {
-  throw new TypeError('Expected a non-negative integer');
-}
-*/
