@@ -20,5 +20,11 @@ export default defineConfig([
       '@typescript-eslint/no-unused-vars': 'off',
     },
   },
-  { files: ['**/*.md'], plugins: { markdown }, language: 'markdown/gfm', extends: ['markdown/recommended'] },
+  {
+    files: ['**/*.md'],
+    plugins: { markdown },
+    language: 'markdown/gfm',
+    extends: ['markdown/recommended'],
+    rules: { 'markdown/no-missing-label-refs': 'off' },
+  },
 ]);

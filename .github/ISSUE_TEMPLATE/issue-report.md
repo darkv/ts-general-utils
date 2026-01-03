@@ -1,3 +1,11 @@
+---
+name: Bug Report
+about: File a bug/issue
+title: '[BUG] <title>'
+labels: bug
+assignees: ''
+---
+
 ## The Problem
 
 ### 💻 Code demonstrating the problem
