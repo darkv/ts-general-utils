@@ -229,3 +229,33 @@ if (isPositiveInteger(value)) {
   // value is now typed as PositiveInteger
 }
 ```
+
+---
+
+### `times`
+
+Creates an array of numbers from 0 (inclusive) to n (exclusive). Commonly used in combination with `forEach` or `map` to repeat an operation n times.
+
+```typescript
+import { times } from '@darkv/ts-general-utils/values';
+
+times(3); // Returns [0, 1, 2]
+
+// Repeat something n times
+times(5).forEach(() => {
+  console.log('Hello');
+});
+
+// Use with map, utilizing the index value (React example)
+function SkeletonLoader({ count }: { count: number }) {
+  return (
+    <>
+      {times(count).map((i) => (
+        <div key={i} className="skeleton">
+          Loading item {i + 1}...
+        </div>
+      ))}
+    </>
+  );
+}
+```
