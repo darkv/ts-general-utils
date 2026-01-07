@@ -2,6 +2,27 @@
 
 This document provides a brief overview of the available utilities. For detailed API reference, see the TSDoc comments in the source code or use your IDE's IntelliSense.
 
+## Table of Contents
+
+- [Random](#random)
+  - [`random<T>`](#randomt)
+  - [`randomInt`](#randomint)
+- [Time](#time)
+  - [`delay`](#delay)
+- [Types](#types)
+  - [`Result<T, E>`](#resultt-e)
+  - [`AsyncResult<T, E>`](#asyncresultt-e)
+  - [`Brand<T, TBrand>`](#brandt-tbrand)
+  - [`Unbrand<T>`](#unbrandt)
+  - [`createBrand<T>`](#createbrandt)
+- [Values](#values)
+  - [`isDefined<T>`](#isdefinedt)
+  - [`PositiveNumber<T>`](#positivenumbert)
+  - [`isPositiveNumber`](#ispositivenumber)
+  - [`PositiveInteger<T>`](#positiveintegert)
+  - [`isPositiveInteger`](#ispositiveinteger)
+  - [`times`](#times)
+
 ## Random
 
 Utilities for generating random values and selecting random elements from collections.
@@ -9,6 +30,8 @@ Utilities for generating random values and selecting random elements from collec
 ### `random<T>`
 
 Returns a random element from the provided values. Can be called with an array or rest parameters.
+
+See also: [`randomInt`](#randomint)
 
 ```typescript
 import { random } from '@darkv/ts-general-utils/random';
@@ -25,6 +48,8 @@ const number = random(1, 2, 3, 4, 5);
 ### `randomInt`
 
 Returns a random integer from 0 (inclusive) to max (exclusive).
+
+See also: [`random<T>`](#randomt)
 
 ```typescript
 import { randomInt } from '@darkv/ts-general-utils/random';
@@ -58,6 +83,8 @@ General utility types for type-safe programming patterns.
 
 A discriminated union type for representing success or error results without throwing exceptions.
 
+See also: [`AsyncResult<T, E>`](#asyncresultt-e)
+
 ```typescript
 import type { Result } from '@darkv/ts-general-utils/types';
 
@@ -74,6 +101,8 @@ function divide(a: number, b: number): Result<number, string> {
 ### `AsyncResult<T, E>`
 
 A promise that resolves to a `Result` type, useful for async operations.
+
+See also: [`Result<T, E>`](#resultt-e)
 
 ```typescript
 import type { AsyncResult } from '@darkv/ts-general-utils/types';
@@ -93,6 +122,8 @@ async function fetchData(): AsyncResult<Data> {
 ### `Brand<T, TBrand>`
 
 A branded type that adds a compile-time brand to a base type, creating distinct types from the same base type without runtime overhead.
+
+See also: [`Unbrand<T>`](#unbrandt), [`createBrand<T>`](#createbrandt)
 
 ```typescript
 import type { Brand } from '@darkv/ts-general-utils/types';
@@ -114,6 +145,8 @@ setDelay(1000 as Seconds); // ❌ Type error
 
 Extracts the base type from a branded type.
 
+See also: [`Brand<T, TBrand>`](#brandt-tbrand)
+
 ```typescript
 import type { Brand, Unbrand } from '@darkv/ts-general-utils/types';
 
@@ -127,6 +160,8 @@ type Base = Unbrand<Milliseconds>; // number
 ### `createBrand<T>`
 
 Creates utility methods (type guard and brand value creation) for working with a branded type.
+
+See also: [`Brand<T, TBrand>`](#brandt-tbrand)
 
 ```typescript
 import type { Brand } from '@darkv/ts-general-utils/types';
@@ -171,6 +206,8 @@ if (isDefined(value)) {
 
 Helper type that ensures a number is positive (greater than or equal to 0) at compile time.
 
+See also: [`isPositiveNumber`](#ispositivenumber)
+
 ```typescript
 import type { PositiveNumber } from '@darkv/ts-general-utils/values';
 
@@ -189,6 +226,8 @@ processCount(-1); // ❌ Type error
 
 Type guard that checks if a value is a positive number at runtime.
 
+See also: [`PositiveNumber<T>`](#positivenumbert)
+
 ```typescript
 import { isPositiveNumber } from '@darkv/ts-general-utils/values';
 
@@ -202,6 +241,8 @@ if (isPositiveNumber(value)) {
 ### `PositiveInteger<T>`
 
 Helper type that ensures a number is a positive integer (greater than or equal to 0 and an integer) at compile time.
+
+See also: [`isPositiveInteger`](#ispositiveinteger)
 
 ```typescript
 import type { PositiveInteger } from '@darkv/ts-general-utils/values';
@@ -221,6 +262,8 @@ processIndex(-1); // ❌ Type error
 ### `isPositiveInteger`
 
 Type guard that checks if a value is a positive integer at runtime.
+
+See also: [`PositiveInteger<T>`](#positiveintegert)
 
 ```typescript
 import { isPositiveInteger } from '@darkv/ts-general-utils/values';
