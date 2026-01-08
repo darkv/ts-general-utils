@@ -22,6 +22,7 @@ This document provides a brief overview of the available utilities. For detailed
   - [`PositiveInteger<T>`](#positiveintegert)
   - [`isPositiveInteger`](#ispositiveinteger)
   - [`times`](#times)
+  - [`template`](#template)
 
 ## Random
 
@@ -301,4 +302,31 @@ function SkeletonLoader({ count }: { count: number }) {
     </>
   );
 }
+```
+
+---
+
+### `template`
+
+Creates a template function for a given string template. Returns a curried function that accepts replacements and returns the final string with all template variables replaced. Template variables are delimited by curly braces, e.g., `{name}` and `{age}`. The function provides full type safety, automatically inferring the required replacement keys from the template string.
+
+```typescript
+import { template } from '@darkv/ts-general-utils/values';
+
+// Basic usage with single variable
+const greet = template('Hello {name}!');
+greet({ name: 'World' }); // Returns "Hello World!"
+
+// Multiple variables
+const message = template('User {name} is {age} years old');
+message({ name: 'Alice', age: 30 }); // Returns "User Alice is 30 years old"
+
+// Repeated variables are replaced everywhere
+const repeat = template('{word} {word} {word}');
+repeat({ word: 'test' }); // Returns "test test test"
+
+// Type safety: TypeScript knows exactly which keys are required
+const userInfo = template('{firstName} {lastName}, age {age}');
+userInfo({ firstName: 'John', lastName: 'Doe', age: 25 }); // ✅ OK
+userInfo({ firstName: 'John' }); // ❌ TypeScript error: missing 'lastName' and 'age'
 ```
